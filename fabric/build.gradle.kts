@@ -166,26 +166,26 @@ javaComponent.withVariantsFromConfiguration(configurations["shadowRuntimeElement
     skip()
 }
 
-modrinth {
-    token = "${project.property("MODRINTH_TOKEN") ?: "no value"}"
-    projectId = "IJY7IqPP"
-    versionNumber.set("$minecraftVersion-$modVersion-${project.name}")
-    versionType.set("release")
-    uploadFile.set(tasks.remapJar)
-    versionName = "$modVersion for Fabric $minecraftVersion"
-    debugMode = true
-    dependencies {
-        required.project("fabric-api")
-        required.project("architectury-api")
-        required.project("geckolib")
-        required.project("terrablender")
-        required.project("more-hitboxes")
-        embedded.project("cardinal-components-api")
-        embedded.project("sructurized-reborn")
-        embedded.project("midnightlib")
-    }
-    changelog.set(rootProject.file("CHANGELOG.md").readText())
-}
+//modrinth {
+//    token = "${project.property("MODRINTH_TOKEN") ?: "no value"}"
+//    projectId = "IJY7IqPP"
+//    versionNumber.set("$minecraftVersion-$modVersion-${project.name}")
+//    versionType.set("release")
+//    uploadFile.set(tasks.remapJar)
+//    versionName = "$modVersion for Fabric $minecraftVersion"
+//    debugMode = true
+//    dependencies {
+//        required.project("fabric-api")
+//        required.project("architectury-api")
+//        required.project("geckolib")
+//        required.project("terrablender")
+//        required.project("more-hitboxes")
+//        embedded.project("cardinal-components-api")
+//        embedded.project("sructurized-reborn")
+//        embedded.project("midnightlib")
+//    }
+//    changelog.set(rootProject.file("CHANGELOG.md").readText())
+//}
 
 tasks.register<TaskPublishCurseForge>("publishCurseForge") {
     group = "publishing"
@@ -203,5 +203,6 @@ tasks.register<TaskPublishCurseForge>("publishCurseForge") {
 }
 
 tasks.named("publish") {
-    finalizedBy("modrinth", "publishCurseForge")
+//    finalizedBy("modrinth", "publishCurseForge")
+    finalizedBy("publishCurseForge")
 }

@@ -126,22 +126,22 @@ val javaComponent = components["java"] as AdhocComponentWithVariants
 javaComponent.withVariantsFromConfiguration(configurations["shadowRuntimeElements"]) {
     skip()
 }
-modrinth {
-    token = "${project.property("MODRINTH_TOKEN") ?: "no value"}"
-    projectId = "IJY7IqPP"
-    versionNumber.set("$minecraftVersion-$modVersion-${project.name}")
-    versionType.set("release")
-    uploadFile.set(tasks.remapJar)
-    versionName = "$modVersion for Forge $minecraftVersion"
-    debugMode = true
-    dependencies {
-        required.project("architectury-api")
-        required.project("geckolib")
-        required.project("terrablender")
-        required.project("more-hitboxes")
-    }
-    changelog.set(rootProject.file("CHANGELOG.md").readText())
-}
+//modrinth {
+//    token = "${project.property("MODRINTH_TOKEN") ?: "no value"}"
+//    projectId = "IJY7IqPP"
+//    versionNumber.set("$minecraftVersion-$modVersion-${project.name}")
+//    versionType.set("release")
+//    uploadFile.set(tasks.remapJar)
+//    versionName = "$modVersion for Forge $minecraftVersion"
+//    debugMode = true
+//    dependencies {
+//        required.project("architectury-api")
+//        required.project("geckolib")
+//        required.project("terrablender")
+//        required.project("more-hitboxes")
+//    }
+//    changelog.set(rootProject.file("CHANGELOG.md").readText())
+//}
 
 tasks.register<TaskPublishCurseForge>("publishCurseForge") {
     group = "publishing"
@@ -158,5 +158,6 @@ tasks.register<TaskPublishCurseForge>("publishCurseForge") {
 }
 
 tasks.named("publish") {
-    finalizedBy("modrinth", "publishCurseForge")
+//    finalizedBy("modrinth", "publishCurseForge")
+    finalizedBy("publishCurseForge")
 }
